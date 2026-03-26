@@ -49,6 +49,7 @@ function App() {
     const [secretFound, setSecretFound] = useState(false);
     const [password, setPassword] = useState('');
     const [participants, setParticipants] = useState([]);
+    const [submitted, setSubmitted] = useState(false); // <== Fixed hook position
     const canvasRef = useRef(null);
 
     useEffect(() => {
@@ -244,8 +245,6 @@ function App() {
     // Question view
     const q = QUESTIONS[currentStep];
     const isAnswered = q.type === 'choice' ? selectedChoices.length > 0 : (q.type === 'multi' ? selectedChoices.length > 0 && selectedChoices.submitted : textInput.length > 0 && q.submitted);
-    // Manual submission tracker for multi and text
-    const [submitted, setSubmitted] = useState(false);
 
     return (
         <motion.div
